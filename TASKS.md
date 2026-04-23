@@ -59,12 +59,12 @@ Build all of `src/game/` as pure, tested functions. **No React in this phase.**
 
 Goal: render the current state. No interaction.
 
-- [ ] `src/components/Cell.tsx` — single grid cell. Props: `{ filled: boolean; color?: PieceColor }`. Tailwind classes only. Map colour names to Tailwind background classes (define the map as a const so it's tree-shakeable).
-- [ ] `src/components/Board.tsx` — render the 8×8 board from store state. Use CSS Grid (`grid-cols-8`).
-- [ ] `src/components/PieceView.tsx` — render a piece as a small grid based on its bounding box. Used by the tray and (later) the drag overlay.
-- [ ] `src/components/Tray.tsx` — render the three tray pieces. Show empty slots for already-placed (null) pieces.
-- [ ] `src/components/Hud.tsx` — score, high score, mute toggle button.
-- [ ] `src/components/App.tsx` — compose Hud, Board, Tray. Add a "Reset" button that calls `store.reset()` (useful for dev).
+- [x] `src/components/Cell.tsx` — single grid cell. Props: `{ filled: boolean; color?: PieceColor }`. Tailwind classes only. Map colour names to Tailwind background classes (define the map as a const so it's tree-shakeable).
+- [x] `src/components/Board.tsx` — render the 8×8 board from store state. Use CSS Grid (`grid-cols-8`).
+- [x] `src/components/PieceView.tsx` — render a piece as a small grid based on its bounding box. Used by the tray and (later) the drag overlay.
+- [x] `src/components/Tray.tsx` — render the three tray pieces. Show empty slots for already-placed (null) pieces.
+- [x] `src/components/Hud.tsx` — score, high score, mute toggle button.
+- [x] `src/components/App.tsx` — compose Hud, Board, Tray. Add a "Reset" button that calls `store.reset()` (useful for dev).
 - [ ] Verify visually in `pnpm dev`. Resize the window — make sure layout doesn't explode.
 
 **STOP. Show what it looks like, confirm visual is acceptable before adding drag.**
