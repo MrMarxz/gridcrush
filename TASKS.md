@@ -73,12 +73,12 @@ Goal: render the current state. No interaction.
 
 ## Phase 4 — Drag and drop
 
-- [ ] Wrap `App` in `<DndContext>` from `@dnd-kit/core`. Use the `PointerSensor` only (with an activation distance of 5px to avoid accidental drags on click).
-- [ ] Make each tray piece a `useDraggable` source. The drag data carries the `trayIndex`.
-- [ ] Make each board cell a `useDroppable` target. The drop data carries `{ row, col }`.
-- [ ] On drag start: compute the offset from the pointer to the piece's top-left so the ghost aligns naturally.
-- [ ] On drag over: compute the target cell under the pointer. Show a `<DragOverlay>` rendering the piece, tinted green-translucent if `isValidPlacement` returns true, red-translucent if false.
-- [ ] On drag end: if valid, call `store.placePiece(trayIndex, row, col)`. If not, snap back (do nothing — the overlay just disappears).
+- [x] Wrap `App` in `<DndContext>` from `@dnd-kit/core`. Use the `PointerSensor` only (with an activation distance of 5px to avoid accidental drags on click).
+- [x] Make each tray piece a `useDraggable` source. The drag data carries the `trayIndex`.
+- [x] Make each board cell a `useDroppable` target. The drop data carries `{ row, col }`.
+- [x] On drag start: compute the offset from the pointer to the piece's top-left so the ghost aligns naturally.
+- [x] On drag over: compute the target cell under the pointer. Show a `<DragOverlay>` rendering the piece, tinted green-translucent if `isValidPlacement` returns true, red-translucent if false.
+- [x] On drag end: if valid, call `store.placePiece(trayIndex, row, col)`. If not, snap back (do nothing — the overlay just disappears).
 - [ ] Verify: you can drag pieces, valid placements work, invalid ones reject, lines clear, the tray refills after all three are placed.
 
 > **Watch out for:** the dnd-kit drop target detection is centre-based by default. For multi-cell pieces you'll likely want to compute the target by figuring out which board cell the piece's *top-left* would land on, given the pointer position and the original click offset. Don't rely on `over.id` from a single droppable — compute it from pointer coordinates.

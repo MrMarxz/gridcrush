@@ -1,11 +1,15 @@
+import { forwardRef } from 'react';
 import { useGameStore } from '../store/game-store';
 import { Cell } from './Cell';
 
-export function Board() {
+// The outer wrapper in App.tsx owns the decorative frame.
+// This element is a plain grid so getBoundingClientRect().left/top are
+// exactly the origin for drop-target math: col = floor((x - left) / 48).
+export const Board = forwardRef<HTMLDivElement>(function Board(_, ref) {
   const board = useGameStore(state => state.board);
 
   return (
-    <div className="grid grid-cols-8 border-2 border-gray-400 bg-gray-300 gap-px">
+    <div ref={ref} className="grid grid-cols-8">
       {board.map((row, r) =>
         row.map((cell, c) => (
           <Cell
@@ -17,4 +21,6 @@ export function Board() {
       )}
     </div>
   );
-}
+});
+
+Board.displayName = 'Board';
