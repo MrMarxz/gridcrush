@@ -6,15 +6,15 @@ Work top-to-bottom. **Stop at the end of each phase** and report back before sta
 
 ## Phase 0 — Project setup
 
-- [ ] Initialise Vite project: `pnpm create vite . --template react-ts`
-- [ ] Install runtime deps: `pnpm add @dnd-kit/core zustand`
-- [ ] Install dev deps: `pnpm add -D tailwindcss postcss autoprefixer vitest @vitest/ui jsdom @testing-library/react @testing-library/jest-dom @types/node`
-- [ ] Initialise Tailwind: `pnpm tailwindcss init -p`. Configure `tailwind.config.js` to scan `./index.html` and `./src/**/*.{ts,tsx}`. Add the three `@tailwind` directives to `src/index.css`.
-- [ ] Configure Vitest in `vite.config.ts` (`test: { environment: 'jsdom', globals: true, setupFiles: './src/test-setup.ts' }`). Create `src/test-setup.ts` importing `@testing-library/jest-dom`.
-- [ ] Add scripts to `package.json`: `"typecheck": "tsc --noEmit"`, `"test": "vitest run"`, `"test:watch": "vitest"`.
-- [ ] Confirm `tsconfig.json` has `"strict": true`, `"noUncheckedIndexedAccess": true`. Add the latter if missing — it catches half the bugs you'd otherwise hit indexing into the board.
-- [ ] Delete the Vite boilerplate (`App.css`, the React/Vite logos, the counter demo). Replace `App.tsx` with a placeholder `<div>GridCrush</div>`.
-- [ ] Sanity check: `pnpm dev` shows the placeholder; `pnpm typecheck` passes; `pnpm test` passes (no tests yet, that's fine).
+- [x] Initialise Vite project: `pnpm create vite . --template react-ts`
+- [x] Install runtime deps: `pnpm add @dnd-kit/core zustand`
+- [x] Install dev deps: `pnpm add -D tailwindcss postcss autoprefixer vitest @vitest/ui jsdom @testing-library/react @testing-library/jest-dom @types/node`
+- [x] Initialise Tailwind: `pnpm tailwindcss init -p`. Configure `tailwind.config.js` to scan `./index.html` and `./src/**/*.{ts,tsx}`. Add the three `@tailwind` directives to `src/index.css`.
+- [x] Configure Vitest in `vite.config.ts` (`test: { environment: 'jsdom', globals: true, setupFiles: './src/test-setup.ts' }`). Create `src/test-setup.ts` importing `@testing-library/jest-dom`.
+- [x] Add scripts to `package.json`: `"typecheck": "tsc --noEmit"`, `"test": "vitest run"`, `"test:watch": "vitest"`.
+- [x] Confirm `tsconfig.json` has `"strict": true`, `"noUncheckedIndexedAccess": true`. Add the latter if missing — it catches half the bugs you'd otherwise hit indexing into the board.
+- [x] Delete the Vite boilerplate (`App.css`, the React/Vite logos, the counter demo). Replace `App.tsx` with a placeholder `<div>GridCrush</div>`.
+- [x] Sanity check: `pnpm dev` shows the placeholder; `pnpm typecheck` passes; `pnpm test` passes (no tests yet, that's fine).
 
 **STOP. Report what's installed and confirm everything builds before continuing.**
 
