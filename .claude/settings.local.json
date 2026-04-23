@@ -6,7 +6,8 @@
       "Bash(pnpm tailwindcss *)",
       "Bash(pnpm typecheck *)",
       "Bash(pnpm test *)",
-      "Bash(pnpm dev *)"
+      "Bash(pnpm dev *)",
+      "Bash(pnpm build *)"
     ]
   }
 }

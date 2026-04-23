@@ -101,9 +101,9 @@ Goal: render the current state. No interaction.
 
 ## Phase 6 — README and final clean-up
 
-- [ ] `README.md` — what the game is, how to run it (`pnpm install && pnpm dev`), how to test (`pnpm test`), how to build (`pnpm build`). One screenshot.
-- [ ] Remove any leftover debug logs, commented-out code, unused imports.
-- [ ] Final `pnpm typecheck && pnpm test && pnpm build`. All three must pass.
+- [x] `README.md` — what the game is, how to run it (`pnpm install && pnpm dev`), how to test (`pnpm test`), how to build (`pnpm build`). One screenshot.
+- [x] Remove any leftover debug logs, commented-out code, unused imports.
+- [x] Final `pnpm typecheck && pnpm test && pnpm build`. All three must pass.
 
 **Done.**
 
