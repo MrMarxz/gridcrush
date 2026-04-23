@@ -89,11 +89,11 @@ Goal: render the current state. No interaction.
 
 ## Phase 5 — Polish: clear animation, audio, game-over screen
 
-- [ ] Add the clear-flash: when lines are about to clear, render the to-be-cleared cells in white for ~200ms before they vanish. Implement by setting a transient `clearing: Set<string>` (cell coordinates) in the store, removing it after the timeout. Don't block placement during the flash — that's a real footgun for UX.
-- [ ] `src/audio/sounds.ts` — implement `playTone`, `playPlace`, `playClear(linesCount)`, `playCombo`, `playGameOver`. Lazy-init the `AudioContext` on first call. Respect the store's `muted` flag.
-- [ ] Hook sounds into the store actions.
-- [ ] `src/components/GameOverModal.tsx` — overlay shown when `status === "gameover"`. Shows final score, high score, "New best!" badge if applicable, and a "Play Again" button calling `store.reset()`.
-- [ ] Style pass: pick a coherent colour palette for the seven piece colours that all read clearly against the board background. Tweak Hud styling. Make the page feel intentional, not like a Vite default.
+- [x] Add the clear-flash: when lines are about to clear, render the to-be-cleared cells in white for ~200ms before they vanish. Implement by setting a transient `clearing: Set<string>` (cell coordinates) in the store, removing it after the timeout. Don't block placement during the flash — that's a real footgun for UX.
+- [x] `src/audio/sounds.ts` — implement `playTone`, `playPlace`, `playClear(linesCount)`, `playCombo`, `playGameOver`. Lazy-init the `AudioContext` on first call. Respect the store's `muted` flag.
+- [x] Hook sounds into the store actions.
+- [x] `src/components/GameOverModal.tsx` — overlay shown when `status === "gameover"`. Shows final score, high score, "New best!" badge if applicable, and a "Play Again" button calling `store.reset()`.
+- [x] Style pass: pick a coherent colour palette for the seven piece colours that all read clearly against the board background. Tweak Hud styling. Make the page feel intentional, not like a Vite default.
 
 **STOP. Final QA pass. Play through to game-over at least three times. Verify high score persists across page reloads.**
 

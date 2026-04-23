@@ -12,6 +12,7 @@ import { Hud } from './Hud';
 import { Board } from './Board';
 import { Tray } from './Tray';
 import { DragLayer } from './DragLayer';
+import { GameOverModal } from './GameOverModal';
 import type { Piece } from '../game/types';
 
 const CELL_SIZE = 48;
@@ -117,16 +118,16 @@ export default function App() {
       onDragEnd={onDragEnd}
       onDragCancel={onDragCancel}
     >
-      <div className="min-h-screen bg-gray-200 flex flex-col items-center justify-center p-8 gap-2">
+      <div className="min-h-screen bg-slate-800 flex flex-col items-center justify-center p-8 gap-3">
         <Hud />
         {/* p-px + bg creates the 1-px grid-line frame without affecting the inner rect */}
-        <div className="p-px bg-gray-400">
+        <div className="p-px bg-slate-600 rounded shadow-xl">
           <Board ref={boardRef} />
         </div>
         <Tray />
         <button
           onClick={reset}
-          className="mt-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded text-sm font-medium"
+          className="mt-2 px-5 py-2 bg-slate-600 hover:bg-slate-500 text-slate-200 rounded-lg text-sm font-medium transition-colors"
         >
           New Game
         </button>
@@ -140,6 +141,8 @@ export default function App() {
           isValid={isValid}
         />
       )}
+
+      <GameOverModal />
     </DndContext>
   );
 }

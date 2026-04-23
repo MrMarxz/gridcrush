@@ -7,9 +7,12 @@ import { computePlacementPoints, computeClearPoints } from '../game/scoring';
 import { hasAnyValidMove } from '../game/gameover';
 import { randomPiece } from '../game/pieces';
 import { mathRandom } from '../game/rng';
+import { playPlace, playClear, playGameOver } from '../audio/sounds';
 
 const HS_KEY = 'gridcrush:highscore:v1';
 const MUTE_KEY = 'gridcrush:muted:v1';
+const BOARD_SIZE = 8;
+const CLEAR_FLASH_MS = 200;
 
 function loadHighScore(): number {
   try {
@@ -34,6 +37,17 @@ function generateTray(): [Piece, Piece, Piece] {
   return [randomPiece(mathRandom), randomPiece(mathRandom), randomPiece(mathRandom)];
 }
 
+function buildClearingSet(rows: number[], cols: number[]): Set<string> {
+  const s = new Set<string>();
+  for (const r of rows) {
+    for (let c = 0; c < BOARD_SIZE; c++) s.add(`${r},${c}`);
+  }
+  for (const c of cols) {
+    for (let r = 0; r < BOARD_SIZE; r++) s.add(`${r},${c}`);
+  }
+  return s;
+}
+
 export type GameState = {
   board: Board;
   tray: (Piece | null)[];
@@ -42,6 +56,9 @@ export type GameState = {
   comboLevel: number;
   status: 'playing' | 'gameover';
   muted: boolean;
+  // Coordinates of cells currently flashing white before disappearing.
+  // Purely visual — the board cells are already cleared when this is set.
+  clearing: ReadonlySet<string>;
 
   placePiece: (trayIndex: number, row: number, col: number) => void;
   reset: () => void;
@@ -56,9 +73,10 @@ export const useGameStore = create<GameState>()((set, get) => ({
   comboLevel: 1,
   status: 'playing',
   muted: loadMuted(),
+  clearing: new Set<string>(),
 
   placePiece(trayIndex, row, col) {
-    const { board, tray, score, highScore, comboLevel, status } = get();
+    const { board, tray, score, highScore, comboLevel, status, muted } = get();
 
     if (status === 'gameover') return;
 
@@ -76,6 +94,9 @@ export const useGameStore = create<GameState>()((set, get) => ({
     const clearPts = computeClearPoints(linesCleared, comboLevel);
     const newComboLevel = linesCleared > 0 ? comboLevel + 1 : 1;
     const finalBoard = linesCleared > 0 ? clearLines(boardAfterPlace, lines) : boardAfterPlace;
+    const clearingCells = linesCleared > 0
+      ? buildClearingSet(lines.rows, lines.cols)
+      : new Set<string>();
 
     // Update score
     const newScore = score + placementPts + clearPts;
@@ -106,7 +127,25 @@ export const useGameStore = create<GameState>()((set, get) => ({
       highScore: newHighScore,
       comboLevel: newComboLevel,
       status: newStatus,
+      clearing: clearingCells,
     });
+
+    // Sound effects — fired after state is committed
+    playPlace(muted);
+    if (linesCleared > 0) {
+      // Pass pre-increment comboLevel: level ≥ 2 means this is a consecutive clear chain
+      playClear(linesCleared, muted, comboLevel);
+    }
+    if (newStatus === 'gameover') {
+      // Delay so the clear arpeggio (up to 300ms) finishes first
+      const delay = linesCleared > 0 ? 400 : 100;
+      setTimeout(() => playGameOver(get().muted), delay);
+    }
+
+    // Clear the flash after CLEAR_FLASH_MS
+    if (linesCleared > 0) {
+      setTimeout(() => set({ clearing: new Set<string>() }), CLEAR_FLASH_MS);
+    }
   },
 
   reset() {
@@ -117,6 +156,7 @@ export const useGameStore = create<GameState>()((set, get) => ({
       comboLevel: 1,
       status: 'playing',
       highScore: get().highScore, // preserved
+      clearing: new Set<string>(),
     });
   },
 
