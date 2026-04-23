@@ -44,12 +44,12 @@ Build all of `src/game/` as pure, tested functions. **No React in this phase.**
 
 ## Phase 2 — State store
 
-- [ ] `src/store/game-store.ts` — Zustand store matching SPEC §8. Wire up:
+- [x] `src/store/game-store.ts` — Zustand store matching SPEC §8. Wire up:
   - `placePiece(trayIndex, row, col)`: validate → place → score placement → find lines → score clears → update combo → clear lines → null out the tray slot → if all 3 slots null, regenerate tray → check game over → update high score if needed.
   - `reset()`: fresh board, fresh tray, score = 0, combo = 1, status = "playing". **Don't reset high score.**
   - `toggleMute()`: flip + persist.
   - On store creation: load `highScore` and `muted` from `localStorage` (with safe parsing — wrap in try/catch, default to 0 / false on any error).
-- [ ] Manual sanity: import the store in `App.tsx`, log state, place a piece programmatically via the action, log again. Confirm score and board update correctly. Then remove the debug code.
+- [x] Manual sanity: import the store in `App.tsx`, log state, place a piece programmatically via the action, log again. Confirm score and board update correctly. Then remove the debug code.
 
 **STOP. Confirm store works in isolation before building UI.**
 
