@@ -50,14 +50,29 @@ The generator must draw from this set. These are the pieces in v1 — do not add
 | Domino-V          | 2     | (0,0)(1,0)                                                    |
 | Tromino-H         | 3     | (0,0)(0,1)(0,2)                                               |
 | Tromino-V         | 3     | (0,0)(1,0)(2,0)                                               |
-| L-3 (each rotation as separate entry) | 3 | 4 rotations of the L-tromino                       |
+| L-3-a             | 3     | (0,0)(1,0)(1,1)                                               |
+| L-3-b             | 3     | (0,0)(0,1)(1,1)                                               |
+| L-3-c             | 3     | (0,0)(0,1)(1,0)                                               |
+| L-3-d             | 3     | (0,1)(1,0)(1,1)                                               |
 | Square-2          | 4     | (0,0)(0,1)(1,0)(1,1)                                          |
 | Tetromino-line-H  | 4     | (0,0)(0,1)(0,2)(0,3)                                          |
 | Tetromino-line-V  | 4     | (0,0)(1,0)(2,0)(3,0)                                          |
-| L-4 (4 rotations) | 4     | each rotation a separate entry                                |
-| J-4 (4 rotations) | 4     | each rotation a separate entry                                |
-| T-4 (4 rotations) | 4     | each rotation a separate entry                                |
-| S-4 / Z-4         | 4     | both, each in 2 rotations                                     |
+| L-4-0             | 4     | (0,0)(1,0)(2,0)(2,1)                                          |
+| L-4-1             | 4     | (0,0)(0,1)(0,2)(1,0)                                          |
+| L-4-2             | 4     | (0,0)(0,1)(1,1)(2,1)                                          |
+| L-4-3             | 4     | (0,2)(1,0)(1,1)(1,2)                                          |
+| J-4-0             | 4     | (0,1)(1,1)(2,0)(2,1)                                          |
+| J-4-1             | 4     | (0,0)(1,0)(1,1)(1,2)                                          |
+| J-4-2             | 4     | (0,0)(0,1)(1,0)(2,0)                                          |
+| J-4-3             | 4     | (0,0)(0,1)(0,2)(1,2)                                          |
+| T-4-0             | 4     | (0,0)(0,1)(0,2)(1,1)                                          |
+| T-4-1             | 4     | (0,1)(1,0)(1,1)(2,1)                                          |
+| T-4-2             | 4     | (0,1)(1,0)(1,1)(1,2)                                          |
+| T-4-3             | 4     | (0,0)(1,0)(1,1)(2,0)                                          |
+| S-4-0             | 4     | (0,1)(0,2)(1,0)(1,1)                                          |
+| S-4-1             | 4     | (0,0)(1,0)(1,1)(2,1)                                          |
+| Z-4-0             | 4     | (0,0)(0,1)(1,1)(1,2)                                          |
+| Z-4-1             | 4     | (0,1)(1,0)(1,1)(2,0)                                          |
 | Line-5-H          | 5     | (0,0)(0,1)(0,2)(0,3)(0,4)                                     |
 | Line-5-V          | 5     | (0,0)(1,0)(2,0)(3,0)(4,0)                                     |
 | Square-3          | 9     | full 3×3 block                                                |
@@ -134,7 +149,7 @@ All scoring is integer.
 | Clear 3 lines in one move     | +60   (10 + 20 + 30 bonus)              |
 | Clear 4 lines in one move     | +100  (10 + 20 + 30 + 40 bonus)         |
 | Clear N lines in one move     | `10·N + 10·(N·(N−1)/2)` general formula |
-| Combo: clear lines on consecutive placements | multiply the placement's clear points by `comboLevel` (starts at 2 on the second consecutive clearing placement, +1 each additional consecutive placement that clears, resets to 1 the moment a placement clears nothing) |
+| Combo: clear lines on consecutive placements | `comboLevel` starts at 1. A clearing placement multiplies its **clear points** (not placement points) by `comboLevel`, then increments `comboLevel` by 1. A non-clearing placement resets `comboLevel` to 1. First clear in a chain: ×1 (no bonus). Second consecutive clear: ×2. Third: ×3. |
 
 A "line" = one full row OR one full column. A placement that fills both a row and a column simultaneously counts as **2 lines cleared** for scoring.
 

@@ -24,19 +24,19 @@ Work top-to-bottom. **Stop at the end of each phase** and report back before sta
 
 Build all of `src/game/` as pure, tested functions. **No React in this phase.**
 
-- [ ] `src/game/types.ts` — define `Cell`, `Board`, `PieceColor`, `Offset`, `PieceShape`, `Piece`. Match SPEC §2 and §3.1 exactly.
-- [ ] `src/game/rng.ts` — a `RNG = () => number` type and a `mulberry32(seed: number): RNG` seeded RNG for tests. Export a default `mathRandom: RNG` that just wraps `Math.random`.
-- [ ] `src/game/pieces.ts` — define `PIECE_POOL: PieceShape[]` with every piece from SPEC §3.2 written out by hand. Export a `randomPiece(rng: RNG): Piece` that picks a uniform random shape and assigns a uniform random colour and a fresh `id` (use `crypto.randomUUID()`).
-- [ ] `src/game/pieces.test.ts` — write all tests from SPEC §7 for pieces. Include a test that uses a seeded RNG to confirm `randomPiece` is deterministic.
-- [ ] `src/game/placement.ts` — `isValidPlacement(board, piece, row, col): boolean` and `placePiece(board, piece, row, col): Board` (returns a new board, never mutates).
-- [ ] `src/game/placement.test.ts` — every test from SPEC §7.
-- [ ] `src/game/clearing.ts` — `findClearedLines(board): { rows: number[], cols: number[] }` and `clearLines(board, lines): Board`.
-- [ ] `src/game/clearing.test.ts` — every test from SPEC §7. Pay special attention to the "row + column simultaneously" case — it's the most common bug.
-- [ ] `src/game/scoring.ts` — `computePlacementPoints(piece): number`, `computeClearPoints(linesCleared: number, comboLevel: number): number`. Pure, no state.
-- [ ] `src/game/scoring.test.ts` — every test from SPEC §7. Verify the bonus formula with N=1,2,3,4,5.
-- [ ] `src/game/gameover.ts` — `hasAnyValidMove(board, tray: (Piece | null)[]): boolean`.
-- [ ] `src/game/gameover.test.ts` — every test from SPEC §7. The "one valid spot for one piece" test is the critical one.
-- [ ] Run `pnpm test`. **All tests must pass.** Run `pnpm typecheck`. **Must pass clean.**
+- [x] `src/game/types.ts` — define `Cell`, `Board`, `PieceColor`, `Offset`, `PieceShape`, `Piece`. Match SPEC §2 and §3.1 exactly.
+- [x] `src/game/rng.ts` — a `RNG = () => number` type and a `mulberry32(seed: number): RNG` seeded RNG for tests. Export a default `mathRandom: RNG` that just wraps `Math.random`.
+- [x] `src/game/pieces.ts` — define `PIECE_POOL: PieceShape[]` with every piece from SPEC §3.2 written out by hand. Export a `randomPiece(rng: RNG): Piece` that picks a uniform random shape and assigns a uniform random colour and a fresh `id` (use `crypto.randomUUID()`).
+- [x] `src/game/pieces.test.ts` — write all tests from SPEC §7 for pieces. Include a test that uses a seeded RNG to confirm `randomPiece` is deterministic.
+- [x] `src/game/placement.ts` — `isValidPlacement(board, piece, row, col): boolean` and `placePiece(board, piece, row, col): Board` (returns a new board, never mutates).
+- [x] `src/game/placement.test.ts` — every test from SPEC §7.
+- [x] `src/game/clearing.ts` — `findClearedLines(board): { rows: number[], cols: number[] }` and `clearLines(board, lines): Board`.
+- [x] `src/game/clearing.test.ts` — every test from SPEC §7. Pay special attention to the "row + column simultaneously" case — it's the most common bug.
+- [x] `src/game/scoring.ts` — `computePlacementPoints(piece): number`, `computeClearPoints(linesCleared: number, comboLevel: number): number`. Pure, no state.
+- [x] `src/game/scoring.test.ts` — every test from SPEC §7. Verify the bonus formula with N=1,2,3,4,5.
+- [x] `src/game/gameover.ts` — `hasAnyValidMove(board, tray: (Piece | null)[]): boolean`.
+- [x] `src/game/gameover.test.ts` — every test from SPEC §7. The "one valid spot for one piece" test is the critical one.
+- [x] Run `pnpm test`. **All tests must pass.** Run `pnpm typecheck`. **Must pass clean.**
 
 **STOP. Report test count, pass/fail, and any spec ambiguities encountered. Wait for the user before continuing.**
 
